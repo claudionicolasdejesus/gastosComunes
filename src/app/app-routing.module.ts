@@ -11,6 +11,46 @@ const routes: Routes = [
     redirectTo: 'home',
     pathMatch: 'full'
   },
+  {
+    path: 'login-usuario',
+    loadChildren: () => import('./pages/login-usuario/login-usuario.module').then( m => m.LoginUsuarioPageModule)
+  },
+  {
+    path: 'listado-residencia',
+    loadChildren: () => import('./pages/listado-residencia/listado-residencia.module').then( m => m.ListadoResidenciaPageModule)
+  },
+  {
+    path: 'residencia-detalle',
+    loadChildren: () => import('./pages/residencia-detalle/residencia-detalle.module').then( m => m.ResidenciaDetallePageModule)
+  },
+  {
+    path: 'servicio-detalle',
+    loadChildren: () => import('./pages/servicio-detalle/servicio-detalle.module').then( m => m.ServicioDetallePageModule)
+  },
+  {
+    path: 'historial-pagos',
+    loadChildren: () => import('./pages/historial-pagos/historial-pagos.module').then( m => m.HistorialPagosPageModule)
+  },
+  {
+    path: 'login-admin',
+    loadChildren: () => import('./pages/login-admin/login-admin.module').then( m => m.LoginAdminPageModule)
+  },
+  {
+    path: 'lista-comunidad',
+    loadChildren: () => import('./pages/lista-comunidad/lista-comunidad.module').then( m => m.ListaComunidadPageModule)
+  },
+  {
+    path: 'listado-residencia-admin',
+    loadChildren: () => import('./pages/listado-residencia-admin/listado-residencia-admin.module').then( m => m.ListadoResidenciaAdminPageModule)
+  },
+  {
+    path: 'listado-detalle-admin',
+    loadChildren: () => import('./pages/listado-detalle-admin/listado-detalle-admin.module').then( m => m.ListadoDetalleAdminPageModule)
+  },
+  {
+    path: 'servicio-detalle-admin',
+    loadChildren: () => import('./pages/servicio-detalle-admin/servicio-detalle-admin.module').then( m => m.ServicioDetalleAdminPageModule)
+  },
 ];
 
 @NgModule({
