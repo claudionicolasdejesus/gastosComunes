@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
   selector: 'app-login-admin',
   templateUrl: './login-admin.page.html',
   styleUrls: ['./login-admin.page.scss'],
+  standalone: false,
 })
 export class LoginAdminPage implements OnInit {
 

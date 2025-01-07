@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
   selector: 'app-listado-detalle-admin',
   templateUrl: './listado-detalle-admin.page.html',
   styleUrls: ['./listado-detalle-admin.page.scss'],
+  standalone: false,
 })
 export class ListadoDetalleAdminPage implements OnInit {
 

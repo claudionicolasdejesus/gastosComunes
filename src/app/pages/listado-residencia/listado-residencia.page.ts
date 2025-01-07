@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
   selector: 'app-listado-residencia',
   templateUrl: './listado-residencia.page.html',
   styleUrls: ['./listado-residencia.page.scss'],
+  standalone: false,
 })
 export class ListadoResidenciaPage implements OnInit {
 
