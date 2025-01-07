@@ -1,0 +1,7 @@
+{
+  "name": "gastosComunes",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
