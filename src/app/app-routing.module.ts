@@ -50,10 +50,23 @@ const routes: Routes = [
   {
     path: 'servicio-detalle-admin',
     loadChildren: () => import('./pages/servicio-detalle-admin/servicio-detalle-admin.module').then( m => m.ServicioDetalleAdminPageModule)
-  },  {
+  },
+  {
     path: 'formulario-pago',
     loadChildren: () => import('./pages/formulario-pago/formulario-pago.module').then( m => m.FormularioPagoPageModule)
   },
+  {
+    path: 'residencia-detalle-admin',
+    loadChildren: () => import('./pages/residencia-detalle-admin/residencia-detalle-admin.module').then( m => m.ResidenciaDetalleAdminPageModule)
+  },
+  {
+    path: 'residencia-detalle-admin',
+    loadChildren: () => import('./pages/residencia-detalle-admin/residencia-detalle-admin.module').then( m => m.ResidenciaDetalleAdminPageModule)
+  },  {
+    path: 'revision-pago',
+    loadChildren: () => import('./pages/revision-pago/revision-pago.module').then( m => m.RevisionPagoPageModule)
+  },
+
 
 ];
 
