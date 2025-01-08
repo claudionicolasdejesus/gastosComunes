@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormularioPago } from '../../interfaces/formulario-pago';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-formulario-pago',
@@ -9,8 +10,10 @@ import { FormularioPago } from '../../interfaces/formulario-pago';
 })
 export class FormularioPagoPage implements OnInit {
 
-  constructor() { }
+  constructor(private alertController: AlertController) { }
 
+  message: string='';
+  header: string='';
   FP:FormularioPago = {
     montoPagado: 0,
     metodoPago: '',
@@ -20,8 +23,29 @@ export class FormularioPagoPage implements OnInit {
   ngOnInit() {
   }
 
-  onSubmit() {
+  async presentAlert(header:string, message:string) {
+    const alert = await this.alertController.create({
+      header: this.header,
+      message: this.message,
+      buttons: ['Aceptar'],
+    });
 
+    await alert.present();
+  }
+
+  onSubmit() {
+    console.log(this.FP);
+    if(this.FP.comentarios!=="" && this.FP.metodoPago!=="" && this.FP.montoPagado>0){
+      console.log("Formulario OK");
+      this.header = 'Pago enviado con éxito'
+      this.message = 'El formulario de pago será revisado por un administrador en la brevedad'
+      this.presentAlert(this.header, this.message);
+    }
+    else{
+      this.header = 'Error con el formulario'
+      this.message = 'Uno de los campos fue rellenado de manera incorrecta, intentar nuevamente'
+      this.presentAlert(this.header, this.message);
+    }
   }
 
 }
