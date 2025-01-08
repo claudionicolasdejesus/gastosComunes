@@ -1,0 +1,39 @@
+<app-encabezado titulo="login usuario"></app-encabezado>
+
+<ion-content class="ion-padding">
+  <ion-text color="primary" class="ion-text-center">
+    <h1>Formulario</h1>
+  </ion-text>
+
+  <ion-list>
+    <form #formulario="ngForm" (ngSubmit)="onSubmit()">
+      <ion-item>
+        <ion-input label="Monto pagado" required type="number" 
+        labelPlacement="floating"
+        [(ngModel)]="FP.montoPagado" name="montoPago"
+        placeholder="ingrese el monto"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-input label="Método de pago"  required type="text" 
+        labelPlacement="floating" 
+        [(ngModel)]="FP.metodoPago" name="metodoPago"
+        placeholder="ingrese el metodo de pago"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-input label="comentarios" type="text" 
+        labelPlacement="floating" 
+        [(ngModel)]="FP.comentarios" name="comentarios"
+        placeholder="Ingrese los comentarios que desee realizar respecto a este pago"></ion-input>
+      </ion-item>
+
+      <ion-button expand="block" color="primary" type="submit" size="small" >
+        <!--[disabled]="formulario.invalid"-->
+        <ion-text color="light">
+          <p>Enviar</p>
+        </ion-text>
+      </ion-button>
+    </form>
+  </ion-list>
+</ion-content>
