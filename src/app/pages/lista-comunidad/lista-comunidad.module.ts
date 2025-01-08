@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { ListaComunidadPageRoutingModule } from './lista-comunidad-routing.module';
 
 import { ListaComunidadPage } from './lista-comunidad.page';
+import { ComponentsModule } from 'src/app/components/components.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    ListaComunidadPageRoutingModule
+    ListaComunidadPageRoutingModule,
+    ComponentsModule
   ],
   declarations: [ListaComunidadPage]
 })

@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { ResidenciaDetallePageRoutingModule } from './residencia-detalle-routing.module';
 
 import { ResidenciaDetallePage } from './residencia-detalle.page';
+import { ComponentsModule } from 'src/app/components/components.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    ResidenciaDetallePageRoutingModule
+    ResidenciaDetallePageRoutingModule,
+    ComponentsModule
   ],
   declarations: [ResidenciaDetallePage]
 })

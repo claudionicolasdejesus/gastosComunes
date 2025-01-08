@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { User } from 'src/app/interfaces/user';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login-usuario',
@@ -10,17 +10,25 @@ import { User } from 'src/app/interfaces/user';
 })
 export class LoginUsuarioPage implements OnInit {
 
+  mensaje:string='';
   usr:User = {
     username: '',
     password: ''
   }
 
-  constructor() { }
+  constructor(private router:Router) { }
 
   ngOnInit() {
   }
 
   onSubmit(){
-    console.log('Formulario enviado');
+    console.log(this.usr);
+    if(this.usr.username=="" && this.usr.password==""){
+      console.log("Acceso ok");
+        this.router.navigate(['/listado-residencia'])
+    }
+    else{
+      this.mensaje='Acceso Denegado';
+    }
   }
 }

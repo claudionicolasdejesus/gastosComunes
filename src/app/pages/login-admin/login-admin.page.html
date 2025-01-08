@@ -1,13 +1,30 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>loginAdmin</ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-encabezado titulo="formulario"></app-encabezado>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">loginAdmin</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="ion-padding">
+  <ion-text color="primary" class="ion-text-center">
+    <h1>Formulario</h1>
+  </ion-text>
+
+  <ion-list>
+    <form #formulario="ngForm" (ngSubmit)="onSubmit()">
+      <ion-item>
+        <ion-input label="Nombre de Usuario" required type="text" 
+        labelPlacement="floating"
+        [(ngModel)]="admn.username" name="username"
+        placeholder="usuario"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input label="Contraseña"  required type="password" 
+        labelPlacement="floating" 
+        [(ngModel)]="admn.password" name="password"
+        placeholder="******"></ion-input>
+      </ion-item>
+      <ion-button expand="block" color="primary" type="submit" size="small" >
+        <!--[disabled]="formulario.invalid"-->
+        <ion-text color="light">
+          <p>Iniciar Sesión</p>
+        </ion-text>
+      </ion-button>
+    </form>
+  </ion-list>
 </ion-content>
