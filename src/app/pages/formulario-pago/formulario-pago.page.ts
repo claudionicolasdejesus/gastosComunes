@@ -29,7 +29,7 @@ export class FormularioPagoPage implements OnInit {
       text: 'Confirmar',
       role: 'confirm',
       handler: () => {
-        this.router.navigate(['/residencia-detalle']);
+        this.router.navigate(['/listado-servicio']);
       },
     },
   ];
