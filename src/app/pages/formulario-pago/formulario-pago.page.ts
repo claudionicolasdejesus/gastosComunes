@@ -34,14 +34,13 @@ export class FormularioPagoPage implements OnInit {
     },
   ];
 
-  ok:boolean=false;
-
   async presentAlert(header:string, message:string) {
     
     const alert = await this.alertController.create({
       header: this.header,
       message: this.message,
       buttons: this.alertButtons,
+      backdropDismiss: false,
     });
 
     await alert.present();
@@ -49,7 +48,7 @@ export class FormularioPagoPage implements OnInit {
 
   onSubmit() {
     console.log(this.FP);
-    if(this.FP.comentarios!=="" && this.FP.metodoPago!=="" && this.FP.montoPagado>0){
+    if(this.FP.metodoPago!=="" && this.FP.montoPagado>0){
       console.log("Formulario OK");
       this.header = 'Pago enviado con éxito'
       this.message = 'El formulario de pago será revisado por un administrador en la brevedad'
