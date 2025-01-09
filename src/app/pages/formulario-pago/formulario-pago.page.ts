@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { booleanAttribute, Component, OnInit } from '@angular/core';
 import { FormularioPago } from '../../interfaces/formulario-pago';
 import { AlertController } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-formulario-pago',
@@ -10,7 +11,7 @@ import { AlertController } from '@ionic/angular';
 })
 export class FormularioPagoPage implements OnInit {
 
-  constructor(private alertController: AlertController) { }
+  constructor(private alertController: AlertController, private router: Router) { }
 
   message: string='';
   header: string='';
@@ -23,11 +24,24 @@ export class FormularioPagoPage implements OnInit {
   ngOnInit() {
   }
 
+  public alertButtons = [
+    {
+      text: 'Confirmar',
+      role: 'confirm',
+      handler: () => {
+        this.router.navigate(['/residencia-detalle']);
+      },
+    },
+  ];
+
+  ok:boolean=false;
+
   async presentAlert(header:string, message:string) {
+    
     const alert = await this.alertController.create({
       header: this.header,
       message: this.message,
-      buttons: ['Aceptar'],
+      buttons: this.alertButtons,
     });
 
     await alert.present();
