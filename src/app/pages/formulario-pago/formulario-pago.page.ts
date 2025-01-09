@@ -1,4 +1,4 @@
-import { booleanAttribute, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormularioPago } from '../../interfaces/formulario-pago';
 import { AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';

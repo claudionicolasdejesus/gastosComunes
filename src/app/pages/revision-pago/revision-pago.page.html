@@ -6,7 +6,7 @@
   </ion-text>
 
   <ion-list>
-    <form>
+    <form #formulario="ngForm" (ngSubmit)="onSubmit()">
       <ion-item>
         <ion-label class="i-text-capitalize">Estado: Pendiente ⚠️</ion-label>
       </ion-item>
