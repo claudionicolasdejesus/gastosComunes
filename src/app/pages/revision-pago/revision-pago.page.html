@@ -6,7 +6,7 @@
   </ion-text>
 
   <ion-list>
-    <form #formulario="ngForm" (ngSubmit)="onSubmit()">
+    <form #formulario="ngForm" (ngSubmit)="onSubmit($event)" id="ngForm">
       <ion-item>
         <ion-label class="i-text-capitalize">Estado: Pendiente ⚠️</ion-label>
       </ion-item>
@@ -24,13 +24,13 @@
         <ion-label class="i-text-capitalize">blablabla</ion-label>
       </ion-item>
 
-      <ion-button expand="block" color="primary" type="submit" size="small" >
+      <ion-button expand="block" color="primary" type="submit" size="small" value="Aceptar" class="button-revision-pago">
         <!--[disabled]="formulario.invalid"-->
         <ion-text color="light">
           <p>Aceptar</p>
         </ion-text>
       </ion-button>
-      <ion-button expand="block" color="primary" type="submit" size="small" >
+      <ion-button expand="block" color="primary" type="submit" size="small" value="Denegar" class="button-revision-pago">
         <!--[disabled]="formulario.invalid"-->
         <ion-text color="light">
           <p>Denegar</p>

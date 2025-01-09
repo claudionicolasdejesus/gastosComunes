@@ -15,6 +15,7 @@ export class RevisionPagoPage implements OnInit {
 
   message: string='';
   header: string='';
+  comentario: string = '';
   FP:FormularioPago = {
     montoPagado: 0,
     metodoPago: '',
@@ -46,12 +47,37 @@ export class RevisionPagoPage implements OnInit {
     await alert.present();
   }
 
-  onSubmit() {
-    console.log(this.FP);
-    console.log("Formulario OK");
-    this.header = 'Solicitud aceptada con éxito'
-    this.message = 'La solicitud ha sido aceptada con éxito'
-    this.presentAlert(this.header, this.message);
-  }
+  onSubmit(event: Event) {
 
+    event.preventDefault();
+
+    let valueButton:string = 'aceptar'
+
+    const buttonClicked = event.target as HTMLElement; // Obtén el elemento HTML que disparó el evento
+    const activeElement = document.activeElement as HTMLButtonElement;
+
+    if (activeElement.tagName === 'ION-BUTTON') {
+      const valueButton = activeElement.getAttribute('value'); // Obtén el valor del botón presionado
+      console.log('Valor del botón presionado: ', valueButton);
+      console.log('Formulario:', this.FP);
+  
+      if (valueButton === 'Aceptar') {
+        console.log('Formulario aceptado');
+        this.header = 'Solicitud aceptada con éxito'
+        this.message = 'Ahora se le redireccionará de vuelta a el listado de comunidades.'
+        this.presentAlert(
+          this.header,
+          this.message
+        );
+      } else if (valueButton === 'Denegar') {
+        console.log('Formulario denegado');
+        this.header = 'Solicitud rechazada'
+        this.message = 'Por favor escriba escriba las razones por las cuales la solicitud fue rechazada.'
+        this.presentAlert(
+          this.header,
+          this.message
+        );
+      }
+    }
+  }
 }
