@@ -55,17 +55,6 @@ const routes: Routes = [
     path: 'revision-pago',
     loadChildren: () => import('./pages/revision-pago/revision-pago.module').then( m => m.RevisionPagoPageModule)
   },
-  {
-    path: 'listado-servicio',
-    loadChildren: () => import('./pages/listado-servicio/listado-servicio.module').then( m => m.ListadoServicioPageModule)
-  },
-  {
-    path: 'listado-servicios-admin',
-    loadChildren: () => import('./pages/listado-servicios-admin/listado-servicios-admin.module').then( m => m.ListadoServiciosAdminPageModule)
-  },
-
-
-
 ];
 
 @NgModule({
