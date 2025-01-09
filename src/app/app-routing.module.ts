@@ -52,14 +52,6 @@ const routes: Routes = [
     loadChildren: () => import('./pages/formulario-pago/formulario-pago.module').then( m => m.FormularioPagoPageModule)
   },
   {
-    path: 'residencia-detalle-admin',
-    loadChildren: () => import('./pages/residencia-detalle-admin/residencia-detalle-admin.module').then( m => m.ResidenciaDetalleAdminPageModule)
-  },
-  {
-    path: 'residencia-detalle-admin',
-    loadChildren: () => import('./pages/residencia-detalle-admin/residencia-detalle-admin.module').then( m => m.ResidenciaDetalleAdminPageModule)
-  },
-  {
     path: 'revision-pago',
     loadChildren: () => import('./pages/revision-pago/revision-pago.module').then( m => m.RevisionPagoPageModule)
   },
@@ -67,6 +59,11 @@ const routes: Routes = [
     path: 'listado-servicio',
     loadChildren: () => import('./pages/listado-servicio/listado-servicio.module').then( m => m.ListadoServicioPageModule)
   },
+  {
+    path: 'listado-servicios-admin',
+    loadChildren: () => import('./pages/listado-servicios-admin/listado-servicios-admin.module').then( m => m.ListadoServiciosAdminPageModule)
+  },
+
 
 
 ];
