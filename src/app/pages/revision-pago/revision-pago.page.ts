@@ -35,7 +35,7 @@ export class RevisionPagoPage implements OnInit {
     },
   ];
 
-  async presentAlert(header:string, message:string) {
+  async presentAlert() {
     
     const alert = await this.alertController.create({
       header: this.header,
@@ -47,13 +47,54 @@ export class RevisionPagoPage implements OnInit {
     await alert.present();
   }
 
+  public alertInputs = [
+    {
+      placeholder: 'Name',
+    },
+    {
+      placeholder: 'Nickname (max 8 characters)',
+      attributes: {
+        maxlength: 8,
+      },
+    },
+    {
+      type: 'number',
+      placeholder: 'Age',
+      min: 1,
+      max: 100,
+    },
+    {
+      type: 'textarea',
+      placeholder: 'A little about yourself',
+    },
+  ];
+
+  async presentAlertDennied() {
+    
+    const alert = await this.alertController.create({
+      header: this.header,
+      message: this.message,
+      buttons: this.alertButtons,
+      backdropDismiss: false,
+      inputs: [
+        {
+          name: 'comentario',
+          type: 'textarea',
+          placeholder: 'Escriba acá...',
+          attributes: {
+            maxlength: 300,
+          },
+        },
+      ],
+    });
+
+    await alert.present();
+  }
+
   onSubmit(event: Event) {
 
     event.preventDefault();
 
-    let valueButton:string = 'aceptar'
-
-    const buttonClicked = event.target as HTMLElement; // Obtén el elemento HTML que disparó el evento
     const activeElement = document.activeElement as HTMLButtonElement;
 
     if (activeElement.tagName === 'ION-BUTTON') {
@@ -65,18 +106,12 @@ export class RevisionPagoPage implements OnInit {
         console.log('Formulario aceptado');
         this.header = 'Solicitud aceptada con éxito'
         this.message = 'Ahora se le redireccionará de vuelta a el listado de comunidades.'
-        this.presentAlert(
-          this.header,
-          this.message
-        );
+        this.presentAlert();
       } else if (valueButton === 'Denegar') {
         console.log('Formulario denegado');
         this.header = 'Solicitud rechazada'
-        this.message = 'Por favor escriba escriba las razones por las cuales la solicitud fue rechazada.'
-        this.presentAlert(
-          this.header,
-          this.message
-        );
+        this.message = 'Por favor escriba escriba las razones por las cuales la solicitud fue rechazada. (max 300 caracteres)'
+        this.presentAlertDennied();
       }
     }
   }

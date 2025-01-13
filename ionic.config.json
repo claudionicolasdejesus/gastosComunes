@@ -1,7 +1,9 @@
 {
   "name": "gastosComunes",
+  "innerHTMLTemplatesEnabled": true,
   "integrations": {
     "capacitor": {}
   },
-  "type": "angular"
+  "type": "angular",
+  "sanitizerEnabled": false
 }
