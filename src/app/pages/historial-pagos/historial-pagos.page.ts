@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 import { AlertController, IonicSafeString } from '@ionic/angular';
 
 @Component({
@@ -10,7 +11,7 @@ import { AlertController, IonicSafeString } from '@ionic/angular';
 })
 export class HistorialPagosPage implements OnInit {
 
-  constructor(private sanitizer: DomSanitizer, private alertController:AlertController) { }
+  constructor(private sanitizer: DomSanitizer, private alertController:AlertController, private router:Router) { }
 
   ngOnInit() {
     
@@ -24,22 +25,38 @@ export class HistorialPagosPage implements OnInit {
       header: 'Pago 1',
       subHeader: '15/05/2018',
       message: 'Este pago fue aprobado con un monto total de $' + '13000',
-      buttons: ['Aceptar'],
+      buttons: [
+        {
+          text: 'Aceptar',
+          role: 'confirm',
+          handler: () => {
+            this.router.navigate(['/lista-comunidad']);
+          },
+        },
+      ],
     });
 
     await alert.present();
   }
 
   async irDetalleHistorialPagoDenegado() {
-    let br = "<br>"
-    let brSafe = this.sanitizer.bypassSecurityTrustHtml(br);
+    //let br = "<br>"
+    //let brSafe = this.sanitizer.bypassSecurityTrustHtml(br);
     const alert = await this.alertController.create({
       header: 'Pago 3',
       subHeader: '15/07/2018',
-      message: 'Este pago fue denegado con un monto total de $' + '13000' + 
-      new IonicSafeString('<br>')
+      message: 'Este pago fue denegado con un monto total de $' + '13000' + '\n'
+      
       + 'Comentario: ' + 'El pago fue denegado por falta de fondos',
-      buttons: ['Aceptar'],
+      buttons: [
+        {
+          text: 'Aceptar',
+          role: 'confirm',
+          handler: () => {
+            this.router.navigate(['/lista-comunidad']);
+          },
+        },
+      ],
     });
 
     await alert.present();

@@ -6,26 +6,41 @@
   </ion-text>
 
   <ion-list>
+
     <form #formulario="ngForm" (ngSubmit)="onSubmit()">
+
+      <ion-label labelPlacement="floating" style="text-align: center;">
+        <h3>Seleccione metodo de pago</h3>
+      </ion-label>
+      <ion-select label="Método de pago" placeholder="seleccionar metodo" name="metodoSeleccionado"
+       [(ngModel)]="FP.metodoPago" style="width: 80%; margin-left: auto; margin-right: auto;" required>
+        
+        <ion-select-option>
+          <ion-text color="primary" class="ion-text-center">
+            <h1>Débito</h1>
+          </ion-text>
+        </ion-select-option>
+        <ion-select-option>
+          <ion-text color="primary" class="ion-text-center">
+            <h1>Crédito</h1>
+          </ion-text>
+        </ion-select-option>
+      </ion-select>
+
       <ion-item>
         <ion-input label="Monto pagado" required type="number" 
         labelPlacement="floating"
         [(ngModel)]="FP.montoPagado" name="montoPago"
-        placeholder="ingrese el monto"></ion-input>
-      </ion-item>
-
-      <ion-item>
-        <ion-input label="Método de pago"  required type="text" 
-        labelPlacement="floating" 
-        [(ngModel)]="FP.metodoPago" name="metodoPago"
-        placeholder="ingrese el metodo de pago"></ion-input>
+        placeholder="ingrese el monto"
+        [clearInput]="true" required></ion-input>
       </ion-item>
 
       <ion-item>
         <ion-input label="comentarios" type="text" 
         labelPlacement="floating" 
         [(ngModel)]="FP.comentarios" name="comentarios"
-        placeholder="Ingrese los comentarios que desee realizar respecto a este pago"></ion-input>
+        placeholder="Ingrese los comentarios que desee realizar respecto a este pago"
+        [clearInput]="true"></ion-input>
       </ion-item>
 
       <ion-button expand="block" color="primary" type="submit" size="small" [disabled]="formulario.invalid">

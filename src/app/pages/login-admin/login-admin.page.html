@@ -11,13 +11,15 @@
         <ion-input label="Nombre de Usuario (admin)" required type="text" 
         labelPlacement="floating"
         [(ngModel)]="admn.username" name="username"
-        placeholder="usuario"></ion-input>
+        placeholder="usuario"
+        [clearInput]="true"></ion-input>
       </ion-item>
       <ion-item>
         <ion-input label="Contraseña"  required type="password" 
         labelPlacement="floating" 
         [(ngModel)]="admn.password" name="password"
-        placeholder="******"></ion-input>
+        placeholder="******"
+        [clearInput]="true"></ion-input>
       </ion-item>
       <ion-button expand="block" color="primary" type="submit" size="small" >
         <!--[disabled]="formulario.invalid"-->
