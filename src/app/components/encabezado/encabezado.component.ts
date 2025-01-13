@@ -1,4 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-encabezado',
@@ -8,10 +10,17 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class EncabezadoComponent  implements OnInit {
 
-  constructor() { }
+  constructor(private router:Router, public sanitizer: DomSanitizer) { }
 
   @Input() titulo: string=''
+  ruta: string = ''
 
-  ngOnInit() {}
+  ngOnInit() {
+    console.log(this.router.url)
+
+    this.ruta = this.router.url
+  }
+
+  htmlBackButton: string = `<ion-back-button defaultHref="/home" text="Volver" color="light"></ion-back-button>`
 
 }

@@ -1,6 +1,7 @@
 <ion-header>
   <ion-toolbar color="secondary">
-    <ion-buttons slot="start">
+    <ion-buttons slot="start" id="boton-volver" >
+      <div [innerHTML]="sanitizer.bypassSecurityTrustHtml(htmlBackButton)"></div>
       <ion-back-button defaultHref="/home" text="Volver" color="light"></ion-back-button>
     </ion-buttons>
     <ion-title class="ion-text-capitalize ion-text-center" color="light" mode="md">{{titulo}}</ion-title>
