@@ -16,6 +16,7 @@ export class FormularioPagoPage implements OnInit {
   message: string='';
   header: string='';
   FP:FormularioPago = {
+    usuario: '',
     montoPagado: 0,
     metodoPago: '',
     comentarios: '',

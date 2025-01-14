@@ -17,9 +17,12 @@ export class RevisionPagoPage implements OnInit {
   header: string='';
   comentario: string = '';
   FP:FormularioPago = {
+    usuario: '',
     montoPagado: 0,
     metodoPago: '',
     comentarios: '',
+    aprobado: false,
+    revisado: false,
   }
 
   ngOnInit() {
@@ -103,11 +106,15 @@ export class RevisionPagoPage implements OnInit {
       console.log('Formulario:', this.FP);
   
       if (valueButton === 'Aceptar') {
+        this.FP.revisado = true
         console.log('Formulario aceptado');
+        this.FP.aprobado = true
+        console.log(this.FP.aprobado)
         this.header = 'Solicitud aceptada con éxito'
         this.message = 'Ahora se le redireccionará de vuelta a el listado de comunidades.'
         this.presentAlert();
       } else if (valueButton === 'Denegar') {
+        this.FP.revisado = true
         console.log('Formulario denegado');
         this.header = 'Solicitud rechazada'
         this.message = 'Por favor escriba escriba las razones por las cuales la solicitud fue rechazada. (max 300 caracteres)'

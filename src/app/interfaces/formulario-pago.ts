@@ -1,6 +1,8 @@
 export interface FormularioPago {
-    // usuario: string,
+    usuario: string,
     montoPagado: number,
     metodoPago: string,
     comentarios: string
+    aprobado?: boolean,
+    revisado?: boolean,
 }
