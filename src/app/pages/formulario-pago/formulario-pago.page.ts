@@ -20,6 +20,7 @@ export class FormularioPagoPage implements OnInit {
     montoPagado: 0,
     metodoPago: '',
     comentarios: '',
+    fecha: new Date(),
   }
 
   ngOnInit() {

@@ -21,6 +21,7 @@ export class RevisionPagoPage implements OnInit {
     montoPagado: 0,
     metodoPago: '',
     comentarios: '',
+    fecha: new Date(),
     aprobado: false,
     revisado: false,
   }

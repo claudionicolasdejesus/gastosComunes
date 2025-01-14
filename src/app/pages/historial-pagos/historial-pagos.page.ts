@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
-import { AlertController, IonicSafeString } from '@ionic/angular';
+import { AlertController} from '@ionic/angular';
 
 @Component({
   selector: 'app-historial-pagos',
@@ -29,9 +29,6 @@ export class HistorialPagosPage implements OnInit {
         {
           text: 'Aceptar',
           role: 'confirm',
-          handler: () => {
-            this.router.navigate(['/lista-comunidad']);
-          },
         },
       ],
     });
@@ -52,9 +49,6 @@ export class HistorialPagosPage implements OnInit {
         {
           text: 'Aceptar',
           role: 'confirm',
-          handler: () => {
-            this.router.navigate(['/lista-comunidad']);
-          },
         },
       ],
     });
