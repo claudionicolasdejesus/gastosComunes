@@ -54,7 +54,11 @@ const routes: Routes = [
   {
     path: 'revision-pago',
     loadChildren: () => import('./pages/revision-pago/revision-pago.module').then( m => m.RevisionPagoPageModule)
+  },  {
+    path: 'cuenta',
+    loadChildren: () => import('./pages/cuenta/cuenta.module').then( m => m.CuentaPageModule)
   },
+
 ];
 
 @NgModule({
