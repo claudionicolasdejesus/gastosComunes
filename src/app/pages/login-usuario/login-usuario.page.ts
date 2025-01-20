@@ -17,7 +17,7 @@ export class LoginUsuarioPage implements OnInit {
     password: ''
   }
 
-  constructor(private router:Router) { }
+  constructor(private router:Router, servicio:SupabaseService) { }
 
   ngOnInit() {
   }
@@ -33,5 +33,7 @@ export class LoginUsuarioPage implements OnInit {
     }
   }
 
-  pago(){}
+  pago(){
+    servicio.crearPago(12000, 'debito', 'aaa', '2024', usuarioID, residenciaID)
+  }
 }
