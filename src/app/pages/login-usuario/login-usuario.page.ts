@@ -11,13 +11,14 @@ import { SupabaseService } from 'src/app/supabase.service';
 })
 export class LoginUsuarioPage implements OnInit {
 
+  start: Date = new Date(Date.now());
   mensaje:string='';
   usr:User = {
     username: '',
     password: ''
   }
 
-  constructor(private router:Router, servicio:SupabaseService) { }
+  constructor(private router:Router, private servicio:SupabaseService) { }
 
   ngOnInit() {
   }
@@ -33,7 +34,10 @@ export class LoginUsuarioPage implements OnInit {
     }
   }
 
+  /* función pago 
   pago(){
-    servicio.crearPago(12000, 'debito', 'aaa', '2024', usuarioID, residenciaID)
-  }
+    console.log(this.start);
+    this.servicio.crearPago(12000, 'debito', this.start, 1, 1)
+  } */
+  
 }

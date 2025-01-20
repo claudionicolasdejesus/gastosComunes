@@ -53,10 +53,12 @@ export class SupabaseService {
     await toast.present()
   }
 
-  async crearPago(montoPagar: number, metodoPago: string, comentarios: string, fecha: Date, usuarioID: number, residenciaID: number) {
+  async crearPago(montopagar: number, metodo_pago: string, fecha: Date, 
+    u_id_usuario: number, r_nro_residencia: number, comentarios?: string) {
     const { data, error } = await this.supabase
       .from('pago')
-      .insert({ montoPagar, metodoPago, comentarios, fecha, aprobado: false, revisado: false, usuarioID, residenciaID })
+      .insert({ montopagar, metodo_pago, comentarios, fecha, 
+        aprobado: false, revisado: false, u_id_usuario, r_nro_residencia })
       .select()
   }
 
