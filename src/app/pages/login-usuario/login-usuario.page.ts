@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/interfaces/user';
 import { Router } from '@angular/router';
+import { SupabaseService } from 'src/app/supabase.service';
 
 @Component({
   selector: 'app-login-usuario',
@@ -31,4 +32,6 @@ export class LoginUsuarioPage implements OnInit {
       this.mensaje='Acceso Denegado';
     }
   }
+
+  pago(){}
 }

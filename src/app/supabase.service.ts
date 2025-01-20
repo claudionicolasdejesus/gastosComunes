@@ -22,6 +22,8 @@ export class SupabaseService {
     this.supabase = createClient(environment.supabaseUrl, environment.supabaseKey)
   }
 
+  // Sesiones y otras cosas
+
   get user() {
     return this.supabase.auth.getUser().then(({ data }) => data?.user)
   }
@@ -30,48 +32,32 @@ export class SupabaseService {
     return this.supabase.auth.getSession().then(({ data }) => data?.session)
   }
 
-  get profile() {
-    return this.user
-      .then((user) => user?.id)
-      .then((id) =>
-        this.supabase.from('profiles').select(`username, website, avatar_url`).eq('id', id).single()
-      )
-  }
-
   authChanges(callback: (event: AuthChangeEvent, session: Session | null) => void) {
     return this.supabase.auth.onAuthStateChange(callback)
   }
 
-  signIn(email: string) {
-    return this.supabase.auth.signInWithOtp({ email })
+  // signin signout
+
+  signIn(email: string, password: string) {
+    return this.supabase.auth.signInWithPassword({ email, password })
   }
 
   signOut() {
     return this.supabase.auth.signOut()
   }
 
-  async updateProfile(profile: Profile) {
-    const user = await this.user
-    const update = {
-      ...profile,
-      id: user?.id,
-      updated_at: new Date(),
-    }
+  // Insertar datos
 
-    return this.supabase.from('profiles').upsert(update)
-  }
-
-  downLoadImage(path: string) {
-    return this.supabase.storage.from('avatars').download(path)
-  }
-
-  uploadAvatar(filePath: string, file: File) {
-    return this.supabase.storage.from('avatars').upload(filePath, file)
-  }
-
-  async createNotice(message: string) {
+  async createPagoToast(message: string) {
     const toast = await this.toastCtrl.create({ message, duration: 5000 })
     await toast.present()
+  }
+
+  async crearPago(montoPagar: number, metodoPago: string, comentarios: string, fecha: Date, usuarioID: number, residenciaID: number) {
+    const { data, error } = await this.supabase
+      .from('pago')
+      .insert({ montoPagar, metodoPago, comentarios, fecha, aprobado: false, revisado: false, usuarioID, residenciaID })
+      .select()
   }
 
   createLoader() {
