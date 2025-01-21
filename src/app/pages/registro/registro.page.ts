@@ -21,14 +21,14 @@ export class RegistroPage implements OnInit {
     private servicio:SupabaseService) { }
 
   agregarResidencia() {
-
+    
   }
 
   ngOnInit() {
   }
 
   onSubmit(){
-    
+
   }
 
 }
