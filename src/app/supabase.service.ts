@@ -53,12 +53,64 @@ export class SupabaseService {
     await toast.present()
   }
 
+  async getPagos() {
+    const { data, error } = await this.supabase.from('pago').select()
+    return data
+  }
+
+  async getPagosById(id_pago: number) {
+    const { data, error } = await this.supabase
+    .from('pago')
+    .select()
+    .eq('id_pago', id_pago)
+    return data
+  }
+
+  async getPagosByResidencia(r_nro_residencia: number) {
+    const { data, error } = await this.supabase
+    .from('pago')
+    .select()
+    .eq('r_nro_residencia', r_nro_residencia)
+    return data
+  }
+
+  async getPagosByUsuario(u_id_usuario: number) {
+    const { data, error } = await this.supabase
+    .from('pago')
+    .select()
+    .eq('u_id_usuario', u_id_usuario)
+    return data
+  }
+
+  async getPagoByLastPaymentRevision() {
+    const { data, error } = await this.supabase
+      .from('pago')
+      .select('*')
+      .order('fecha', { ascending: true }) // Ordena por fecha ascendente
+      .limit(1); // Obtiene solo el primer resultado
+  
+    if (error) {
+      console.error('Error fetching data:', error);
+      return null;
+    }
+  
+    return data?.[0] || null; // Devuelve el primer resultado o null
+  }
+
   async crearPago(montopagar: number, metodo_pago: string, fecha: Date, 
     u_id_usuario: number, r_nro_residencia: number, comentarios?: string) {
     const { data, error } = await this.supabase
       .from('pago')
       .insert({ montopagar, metodo_pago, comentarios, fecha, 
         aprobado: false, revisado: false, u_id_usuario, r_nro_residencia })
+      .select()
+  }
+
+  async aprobarPago(aprobado: boolean, revisado: boolean, id_pago: number) {
+    const { data, error } = await this.supabase
+      .from('pago')
+      .update({ aprobado, revisado })
+      .eq('id_pago', id_pago)
       .select()
   }
 

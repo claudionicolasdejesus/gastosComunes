@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { FormularioPago } from 'src/app/interfaces/formulario-pago';
+import { SupabaseService } from 'src/app/supabase.service';
 
 @Component({
   selector: 'app-revision-pago',
@@ -11,7 +12,9 @@ import { FormularioPago } from 'src/app/interfaces/formulario-pago';
 })
 export class RevisionPagoPage implements OnInit {
 
-  constructor(private alertController: AlertController, private router: Router) { }
+  constructor(private alertController: AlertController, 
+    private router: Router,
+    private servicio: SupabaseService) { }
 
   message: string='';
   header: string='';
@@ -27,6 +30,9 @@ export class RevisionPagoPage implements OnInit {
   }
 
   ngOnInit() {
+    this.servicio.getPagoByLastPaymentRevision().then((data) => {
+      console.log('ultimo pago: ', data);
+    });
   }
 
   public alertButtons = [
@@ -107,16 +113,20 @@ export class RevisionPagoPage implements OnInit {
       console.log('Formulario:', this.FP);
   
       if (valueButton === 'Aceptar') {
-        this.FP.revisado = true
+        this.FP.revisado = true;
+        this.FP.aprobado = true;
         console.log('Formulario aceptado');
-        this.FP.aprobado = true
         console.log(this.FP.aprobado)
+
+        // alerta
         this.header = 'Solicitud aceptada con éxito'
         this.message = 'Ahora se le redireccionará de vuelta a el listado de comunidades.'
         this.presentAlert();
       } else if (valueButton === 'Denegar') {
         this.FP.revisado = true
         console.log('Formulario denegado');
+
+        // alerta
         this.header = 'Solicitud rechazada'
         this.message = 'Por favor escriba escriba las razones por las cuales la solicitud fue rechazada. (max 300 caracteres)'
         this.presentAlertDennied();
