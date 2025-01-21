@@ -1,0 +1,58 @@
+<app-encabezado titulo="login usuario"></app-encabezado>
+
+<ion-content class="ion-padding">
+  <ion-text color="primary" class="ion-text-center">
+    <h1>Formulario</h1>
+  </ion-text>
+
+  <ion-list>
+    <form #formulario="ngForm" (ngSubmit)="onSubmit()">
+      <ion-item>
+        <ion-input label="Correo" required type="text" 
+        labelPlacement="floating"
+        [(ngModel)]="usr.username" name="username"
+        placeholder="usuario"
+        [clearInput]="true"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input label="Contraseña"  required type="password" 
+        labelPlacement="floating" 
+        [(ngModel)]="usr.password" name="password"
+        placeholder="******"
+        [clearInput]="true"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input label="Residencia"  required type="password" 
+        labelPlacement="floating" 
+        [(ngModel)]="usr.password" name="password"
+        placeholder="******"
+        [clearInput]="true"></ion-input>
+      </ion-item>
+
+      <ion-content color="light">
+        <ion-list [inset]="true" id="listaResidenciasAgregar">
+          <ion-button (click)="agregarResidencia()">
+            <ion-icon slot="icon-only" name="add"></ion-icon>
+          </ion-button>
+          <ion-item>
+            <ion-label>Pokémon Yellow</ion-label>
+            <ion-icon slot="icon-only" name="add"></ion-icon>
+          </ion-item>
+        </ion-list>
+      </ion-content>
+
+
+
+
+      <ion-button expand="block" color="primary" type="submit" size="small" >
+        <!--[disabled]="formulario.invalid"-->
+        <ion-text color="light">
+          <p>Iniciar Sesión</p>
+        </ion-text>
+      </ion-button>
+    </form>
+  </ion-list>
+
+  <ion-label class="i-text-capitalize">¿Eres administrador? <a routerLink="/login-admin">haz click aquí</a></ion-label>
+
+</ion-content>

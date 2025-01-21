@@ -11,14 +11,14 @@ import { SupabaseService } from 'src/app/supabase.service';
 })
 export class LoginUsuarioPage implements OnInit {
 
-  start: Date = new Date(Date.now());
   mensaje:string='';
   usr:User = {
     username: '',
     password: ''
   }
 
-  constructor(private router:Router, private servicio:SupabaseService) { }
+  constructor(private router:Router, 
+    private servicio:SupabaseService) { }
 
   ngOnInit() {
   }
@@ -33,11 +33,5 @@ export class LoginUsuarioPage implements OnInit {
       this.mensaje='Acceso Denegado';
     }
   }
-
-  /* función pago 
-  pago(){
-    console.log(this.start);
-    this.servicio.crearPago(12000, 'debito', this.start, 1, 1)
-  } */
   
 }

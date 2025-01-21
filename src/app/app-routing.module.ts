@@ -54,7 +54,11 @@ const routes: Routes = [
   {
     path: 'revision-pago',
     loadChildren: () => import('./pages/revision-pago/revision-pago.module').then( m => m.RevisionPagoPageModule)
+  },  {
+    path: 'registro',
+    loadChildren: () => import('./pages/registro/registro.module').then( m => m.RegistroPageModule)
   },
+
 
 ];
 

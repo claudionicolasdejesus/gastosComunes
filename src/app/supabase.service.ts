@@ -48,6 +48,11 @@ export class SupabaseService {
 
   // Insertar datos
 
+  handleError(error: Error) {
+    console.error('Error fetching data:', error);
+    return null;
+  }
+
   async createPagoToast(message: string) {
     const toast = await this.toastCtrl.create({ message, duration: 5000 })
     await toast.present()
@@ -55,6 +60,12 @@ export class SupabaseService {
 
   async getPagos() {
     const { data, error } = await this.supabase.from('pago').select()
+
+    if (error) {
+      console.error('Error fetching data:', error);
+      return null;
+    }
+
     return data
   }
 
@@ -63,6 +74,12 @@ export class SupabaseService {
     .from('pago')
     .select()
     .eq('id_pago', id_pago)
+
+    if (error) {
+      console.error('Error fetching data:', error);
+      return null;
+    }
+
     return data
   }
 
@@ -71,7 +88,13 @@ export class SupabaseService {
     .from('pago')
     .select()
     .eq('r_nro_residencia', r_nro_residencia)
-    return data
+
+    if (error) {
+      console.error('Error fetching data:', error);
+      return null;
+    }
+
+    return data    
   }
 
   async getPagosByUsuario(u_id_usuario: number) {
@@ -79,6 +102,12 @@ export class SupabaseService {
     .from('pago')
     .select()
     .eq('u_id_usuario', u_id_usuario)
+
+    if (error) {
+      console.error('Error fetching data:', error);
+      return null;
+    }
+
     return data
   }
 
@@ -104,6 +133,13 @@ export class SupabaseService {
       .insert({ montopagar, metodo_pago, comentarios, fecha, 
         aprobado: false, revisado: false, u_id_usuario, r_nro_residencia })
       .select()
+
+    if (error) {
+      console.error('Error fetching data:', error);
+      return null;
+    }
+
+    return data
   }
 
   async aprobarPago(aprobado: boolean, revisado: boolean, id_pago: number) {
@@ -112,6 +148,13 @@ export class SupabaseService {
       .update({ aprobado, revisado })
       .eq('id_pago', id_pago)
       .select()
+
+    if (error) {
+      console.error('Error fetching data:', error);
+      return null;
+    }
+
+    return data;
   }
 
   createLoader() {
