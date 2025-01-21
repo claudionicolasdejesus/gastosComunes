@@ -11,6 +11,9 @@ import { SupabaseService } from 'src/app/supabase.service';
 })
 export class RegistroPage implements OnInit {
 
+  residencias: [[number, string, boolean, number, number?]] = 
+  [[0, '', false, 0]];
+
   mensaje:string='';
   usr:User = {
     username: '',
@@ -25,6 +28,12 @@ export class RegistroPage implements OnInit {
   }
 
   ngOnInit() {
+    console.log(this.residencias);
+    this.residencias.pop();
+    console.log(this.residencias);
+    this.residencias.push([2, 'prueba 2', true, 1])
+    this.residencias.push([2, 'prueba 2', true, 1, 3])
+    console.log(this.residencias);
   }
 
   onSubmit(){
