@@ -23,4 +23,13 @@ export class StorageService {
   public set(key: string, value: any) {
     this._storage?.set(key, value);
   }
+
+  public get(key:string) {
+    let data = this._storage?.get(key)
+    return data
+  }
+
+  public clear(){
+    this._storage?.clear()
+  }
 }

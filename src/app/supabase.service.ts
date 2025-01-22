@@ -130,6 +130,20 @@ export class SupabaseService {
     return data[0] 
   }
 
+  async getResidenciasByUsuario(u_id_usuario: number) {
+    const { data, error } = await this.supabase
+      .from('residencia')
+      .select()
+      .eq('u_id_usuario', u_id_usuario)
+  
+      if (error) {
+        console.error('Error fetching data:', error);
+        return null;
+      }
+  
+      return data
+  }
+
   // Insertar datos
 
   handleError(error: Error) {

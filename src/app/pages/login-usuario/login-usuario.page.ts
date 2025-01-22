@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/interfaces/user';
 import { Router } from '@angular/router';
 import { SupabaseService } from 'src/app/supabase.service';
+import { StorageService } from 'src/app/ionic-storage.service';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'app-login-usuario',
@@ -18,9 +20,11 @@ export class LoginUsuarioPage implements OnInit {
   }
 
   constructor(private router:Router, 
-    private servicio:SupabaseService) { }
+    private servicio:SupabaseService,
+    private storageService: StorageService) { }
 
-  ngOnInit() {
+  async ngOnInit() {
+    this.storageService.clear()
   }
 
   onSubmit(){
@@ -29,23 +33,25 @@ export class LoginUsuarioPage implements OnInit {
       console.log(data);
 
       if(data !== undefined){
+        console.log(data.id_usuario);
+        this.storageService.set('id_usuario', data.id_usuario)
+
+        var resultado = this.storageService.get('id_usuario')
+        if (resultado !== undefined){
+          this.storageService.clear()
+          resultado.then(data => { console.log("LUGAR BUENO: " + data) })
+        }
+
         console.log("Acceso ok");
         this.usr.username = '';
         this.usr.password = '';
-        this.router.navigate(['/listado-residencia']);
+        
+        //this.router.navigate(['/listado-residencia']);
       } else {
         console.log("credenciales incorrectas")
       } 
     });
 
-    
-    /* if(this.usr.username=="" && this.usr.password==""){
-      console.log("Acceso ok");
-        this.router.navigate(['/listado-residencia'])
-      }
-    else{
-      this.mensaje='Acceso Denegado';
-    } */
   }
   
 }
