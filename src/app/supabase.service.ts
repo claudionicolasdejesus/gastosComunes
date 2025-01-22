@@ -36,7 +36,7 @@ export class SupabaseService {
     return this.supabase.auth.onAuthStateChange(callback)
   }
 
-  // signin signout
+  // usuario cosas
 
   signIn(email: string, password: string) {
     return this.supabase.auth.signInWithPassword({ email, password })
@@ -44,6 +44,49 @@ export class SupabaseService {
 
   signOut() {
     return this.supabase.auth.signOut()
+  }
+
+  async registro(residencias:any[]) {
+    let resultados: any[] = []; // Array para almacenar los resultados
+
+    for (let i=0; i<residencias.length; i++) {
+      console.log('vuelta destripamiento nivel 2: ' + i);
+      let nro_residencia:Number = residencias[i][0];
+      let estado:String = residencias[i][1];
+      let departamento:Boolean = residencias[i][2];
+      let piso:Number = residencias[i][3];
+      let u_id_usuario:Number = residencias[i][4];
+
+      if(residencias[4] == 0) {
+        const { data, error } = await this.supabase
+        .from('residencia')
+        .insert({ nro_residencia, estado, departamento, 
+                  nopiso:null, u_id_usuario })
+        .select()
+
+        if (error) {
+          console.error('Error ingresando data:', error);
+          return null;
+        }
+    
+        resultados.push(data);
+      } else {
+        const { data, error } = await this.supabase
+        .from('residencia')
+        .insert({ nro_residencia, estado, departamento, 
+                  piso, u_id_usuario })
+        .select()
+
+        if (error) {
+          console.error('Error ingresando data:', error);
+          return null;
+        }
+  
+        resultados.push(data);
+      }
+    }
+
+    return resultados; // Devuelve todos los resultados después de que termine el ciclo
   }
 
   // Insertar datos

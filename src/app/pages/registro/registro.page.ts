@@ -12,7 +12,8 @@ import { AlertController, AlertInput } from '@ionic/angular';
 })
 export class RegistroPage implements OnInit {
 
-  residencias: [[number, string, boolean, number?]] = 
+  // nro_residencia, estado, departamento, u_id_usuario, piso
+  residencias: [[number, string, boolean, number?, number?]] = 
   [[0, '', false, 0]];
 
   mensaje:string='';
@@ -59,10 +60,10 @@ export class RegistroPage implements OnInit {
             } else {
               console.log('Datos correctos');
               if (alertData.piso == ''){
-              this.residencias.push([Number(alertData.nro_residencia), 'prueba', true]);
+              this.residencias.push([Number(alertData.nro_residencia), 'Perfecto', false, 0]);
               } else {
                 // se hace esta mierda por separado pq sino te coloca un string vacío :)
-                this.residencias.push([Number(alertData.nro_residencia), 'prueba', true, Number(alertData.piso)]);
+                this.residencias.push([Number(alertData.nro_residencia), 'Perfecto', true, Number(alertData.piso)]);
               }
               console.log(this.residencias);
             }
@@ -83,7 +84,7 @@ export class RegistroPage implements OnInit {
         this.residencias.splice(i, 1);
         console.log(this.residencias);
       } else {
-        console.log('ERROR');
+        null
       }
     }
   }
@@ -102,7 +103,18 @@ export class RegistroPage implements OnInit {
   }
 
   onSubmit(){
+    // residencias BDD supabase = nro_residencia, estado, departamento (bool), piso (numeric), id_usuario
+    // this.residencias = nro_residencia, estado, departamento, piso, id_usuario
+    // todo calza
 
+    this.residencias.map(o => o[4] = 1)
+    console.log(this.residencias);
+    this.servicio.registro(this.residencias)
+
+    for (let i=0; i<this.residencias.length; i++) {
+      //console.log("Vuelta nivel 1: "+ i);
+      //registro(this.residencias)
+    }
   }
 
 }
