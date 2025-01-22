@@ -102,7 +102,7 @@ export class SupabaseService {
       return null;
     }
 
-    return data    
+    return data[0] 
   }
 
   // Insertar datos

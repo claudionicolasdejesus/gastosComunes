@@ -59,22 +59,24 @@ export class RegistroPage implements OnInit {
               console.log('datos incorrectos');
             } else {
               console.log('Datos correctos');
-              // aca parte
               this.servicio.getResidenciaByNroResidencia(Number(alertData.nro_residencia)).then(o=>{
+                console.log("Residencia datos: ");
                 console.log(o);
-                if (o == null) {
-                  console.log("Objeto ya creado");
+                let listaComprobante = this.residencias.find(o => o[0] == Number(alertData.nro_residencia));
+                console.log("lista comprobante: ");
+                console.log(listaComprobante);
+                if (o !== undefined || listaComprobante !== undefined) {
+                  this.alerta("Residencia existente", "La residencia ya existe, intentelo de vuelta");
                 } else {
-                  if (alertData.piso == ''){
-                    this.residencias.push([Number(alertData.nro_residencia), 'Perfecto', false, 0]);
-                  } else {
-                    // se hace esta mierda por separado pq sino te coloca un string vacío :)
-                    this.residencias.push([Number(alertData.nro_residencia), 'Perfecto', true, Number(alertData.piso)]);
-                  }
+                    if (alertData.piso == ''){
+                      this.residencias.push([Number(alertData.nro_residencia), 'Al día', false, 0]);
+                    } else {
+                      // se hace esta mierda por separado pq sino alertaData.piso te coloca un string vacío :)
+                      this.residencias.push([Number(alertData.nro_residencia), 'Al día', true, Number(alertData.piso)]);
+                    }
                 }
               console.log(this.residencias);
-              // aca
-              }) 
+              })
             }
           }
         },
@@ -83,6 +85,21 @@ export class RegistroPage implements OnInit {
 
     if(this.residencias.length > 0){}
   
+    await alert.present();
+  }
+
+  async alerta(header:string, message:string) {
+    
+    const alert = await this.alertController.create({
+      header: header,
+      message: message,
+      buttons: [{
+        text: 'Confirmar',
+        role: 'confirm',
+      }],
+      backdropDismiss: false,
+    });
+
     await alert.present();
   }
   
