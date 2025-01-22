@@ -59,15 +59,24 @@ export class RegistroPage implements OnInit {
               console.log('datos incorrectos');
             } else {
               console.log('Datos correctos');
-              if (alertData.piso == ''){
-              this.residencias.push([Number(alertData.nro_residencia), 'Perfecto', false, 0]);
-              } else {
-                // se hace esta mierda por separado pq sino te coloca un string vacío :)
-                this.residencias.push([Number(alertData.nro_residencia), 'Perfecto', true, Number(alertData.piso)]);
-              }
+              // aca parte
+              this.servicio.getResidenciaByNroResidencia(Number(alertData.nro_residencia)).then(o=>{
+                console.log(o);
+                if (o == null) {
+                  console.log("Objeto ya creado");
+                } else {
+                  if (alertData.piso == ''){
+                    this.residencias.push([Number(alertData.nro_residencia), 'Perfecto', false, 0]);
+                  } else {
+                    // se hace esta mierda por separado pq sino te coloca un string vacío :)
+                    this.residencias.push([Number(alertData.nro_residencia), 'Perfecto', true, Number(alertData.piso)]);
+                  }
+                }
               console.log(this.residencias);
+              // aca
+              }) 
             }
-          },
+          }
         },
       ],
     });

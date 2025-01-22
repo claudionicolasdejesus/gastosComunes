@@ -89,6 +89,22 @@ export class SupabaseService {
     return resultados; // Devuelve todos los resultados después de que termine el ciclo
   }
 
+  // residencia
+
+  async getResidenciaByNroResidencia(nro_residencia: number) {
+    const { data, error } = await this.supabase
+    .from('residencia')
+    .select()
+    .eq('nro_residencia', nro_residencia)
+
+    if (error) {
+      console.error('Error fetching data:', error);
+      return null;
+    }
+
+    return data    
+  }
+
   // Insertar datos
 
   handleError(error: Error) {
