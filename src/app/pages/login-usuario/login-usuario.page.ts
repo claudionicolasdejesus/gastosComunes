@@ -25,11 +25,24 @@ export class LoginUsuarioPage implements OnInit {
 
   onSubmit(){
     console.log(this.usr);
-    this.servicio.signIn(this.usr.username, this.usr.password);
+    this.servicio.signIn(this.usr.username, this.usr.password).then((data) => {
+      console.log(data);
+
+      if(data !== undefined){
+        console.log("Acceso ok");
+        this.usr.username = '';
+        this.usr.password = '';
+        this.router.navigate(['/listado-residencia']);
+      } else {
+        console.log("credenciales incorrectas")
+      } 
+    });
+
+    
     /* if(this.usr.username=="" && this.usr.password==""){
       console.log("Acceso ok");
         this.router.navigate(['/listado-residencia'])
-    }
+      }
     else{
       this.mensaje='Acceso Denegado';
     } */

@@ -139,10 +139,10 @@ export class RegistroPage implements OnInit {
     console.log(resultado)
 
     if (this.residencias.length > 0) {
-    this.residencias.map(o => o[4] = 1)
-    console.log(this.residencias);
-    let resultado = this.servicio.agregarResidencias(this.residencias)
-    console.log(resultado);
+      this.residencias.map(o => o[4] = 1)
+      console.log(this.residencias);
+      let resultado = this.servicio.agregarResidencias(this.residencias)
+      console.log(resultado);
     } else {
       null
     }

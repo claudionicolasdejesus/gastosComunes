@@ -38,8 +38,19 @@ export class SupabaseService {
 
   // usuario cosas
 
-  async signIn(email: string, password: string) {
-    return this.supabase.auth.signInWithPassword({ email, password });
+  async signIn(username: string, password: string) {
+    const { data, error } = await this.supabase
+        .from('usuario')
+        .select('*')
+        .eq('username', username)
+        .eq('password', password)
+  
+      if (error) {
+        console.error('Error insertando datos', error);
+        return null;
+      }
+  
+      return data[0];
   }
 
   signOut() {
