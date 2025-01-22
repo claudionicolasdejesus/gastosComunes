@@ -133,14 +133,24 @@ export class RegistroPage implements OnInit {
     // this.residencias = nro_residencia, estado, departamento, piso, id_usuario
     // todo calza
 
+    console.log(this.usr.username + " | " + this.usr.password);
+    let resultado = this.servicio.agregarUsuario(this.usr.username, this.usr.password);
+
+    console.log(resultado)
+
+    if (this.residencias.length > 0) {
     this.residencias.map(o => o[4] = 1)
     console.log(this.residencias);
-    this.servicio.registro(this.residencias)
-
-    for (let i=0; i<this.residencias.length; i++) {
-      //console.log("Vuelta nivel 1: "+ i);
-      //registro(this.residencias)
+    let resultado = this.servicio.agregarResidencias(this.residencias)
+    console.log(resultado);
+    } else {
+      null
     }
+
+    /* usr:User = {
+      username: '',
+      password: ''
+    } */
   }
 
 }

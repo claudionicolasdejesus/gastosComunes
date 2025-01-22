@@ -38,15 +38,29 @@ export class SupabaseService {
 
   // usuario cosas
 
-  signIn(email: string, password: string) {
-    return this.supabase.auth.signInWithPassword({ email, password })
+  async signIn(email: string, password: string) {
+    return this.supabase.auth.signInWithPassword({ email, password });
   }
 
   signOut() {
     return this.supabase.auth.signOut()
   }
 
-  async registro(residencias:any[]) {
+  async agregarUsuario(username: string, password:string) {
+      const { data, error } = await this.supabase
+        .from('usuario')
+        .insert({ username, password })
+        .select()
+  
+      if (error) {
+        console.error('Error insertando datos', error);
+        return null;
+      }
+  
+      return data
+  }
+
+  async agregarResidencias(residencias:any[]) {
     let resultados: any[] = []; // Array para almacenar los resultados
 
     for (let i=0; i<residencias.length; i++) {
