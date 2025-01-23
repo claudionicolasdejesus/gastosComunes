@@ -39,14 +39,16 @@ export class LoginUsuarioPage implements OnInit {
         var resultado = this.storageService.get('id_usuario')
         if (resultado !== undefined){
           this.storageService.clear()
-          resultado.then(data => { console.log("LUGAR BUENO 1: " + data) })
+          resultado.then(data => { 
+            console.log("LUGAR BUENO 1: " + data);
+            this.router.navigate(['/listado-residencia']);
+          })
         }
 
         console.log("Acceso ok");
         this.usr.username = '';
         this.usr.password = '';
-        
-        this.router.navigate(['/listado-residencia']);
+      
       } else {
         console.log("credenciales incorrectas")
       } 
