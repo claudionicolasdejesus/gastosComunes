@@ -46,7 +46,7 @@ export class SupabaseService {
         .eq('password', password)
   
       if (error) {
-        console.error('Error insertando datos', error);
+        console.error('Error insertando datos ', error);
         return null;
       }
   
@@ -209,11 +209,18 @@ export class SupabaseService {
     return data
   }
 
-  async getPagosById(id_pago: number) {
+  // pagos
+
+  getPagosByUsusario(id_usuario:number) {
+
+  }  
+
+  async getPagosByIdUusario(id_usuario: number) {
     const { data, error } = await this.supabase
     .from('pago')
     .select()
-    .eq('id_pago', id_pago)
+    .eq('u_id_usuario', id_usuario)
+    .eq('revisado', true)
 
     if (error) {
       console.error('Error fetching data:', error);
@@ -237,11 +244,11 @@ export class SupabaseService {
     return data    
   }
 
-  async getPagosByUsuario(u_id_usuario: number) {
+  async getPagosRevisadosByResidencia(r_nro_residencia: number) {
     const { data, error } = await this.supabase
     .from('pago')
     .select()
-    .eq('u_id_usuario', u_id_usuario)
+    .eq('r_nro_residencia', r_nro_residencia)
 
     if (error) {
       console.error('Error fetching data:', error);

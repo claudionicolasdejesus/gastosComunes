@@ -28,6 +28,7 @@ export class ServicioDetalleAdminPage implements OnInit {
         this.estado_residencia = data2.estado
         this.service.getUsuarioByResidencia(data2.u_id_usuario).then(dataUsuario => {
           console.log(dataUsuario)
+          this.storageService.set('id_usuario', data2.u_id_usuario)
           this.usuario_name = dataUsuario.username
         })
       })
