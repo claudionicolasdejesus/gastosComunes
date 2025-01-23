@@ -46,7 +46,7 @@ export class LoginUsuarioPage implements OnInit {
         this.usr.username = '';
         this.usr.password = '';
         
-        //this.router.navigate(['/listado-residencia']);
+        this.router.navigate(['/listado-residencia']);
       } else {
         console.log("credenciales incorrectas")
       } 

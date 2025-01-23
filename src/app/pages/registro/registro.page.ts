@@ -138,14 +138,24 @@ export class RegistroPage implements OnInit {
 
     console.log(resultado)
 
-    if (this.residencias.length > 0) {
-      this.residencias.map(o => o[4] = 1)
-      console.log(this.residencias);
-      let resultado = this.servicio.agregarResidencias(this.residencias)
-      console.log(resultado);
-    } else {
-      null
-    }
+    resultado.then(data => { 
+      
+        console.log("DATA IMPORTANTE DENTRO DEL THEN: ");
+        console.log( data.id_usuario ); 
+
+        if (this.residencias.length > 0) {
+          this.residencias.map(o => o[4] = data.id_usuario)
+          console.log(this.residencias);
+          let resultado = this.servicio.agregarResidencias(this.residencias)
+          console.log(resultado);
+          this.router.navigate([''])
+        } else {
+          null
+        }
+      
+    });
+
+    
 
     /* usr:User = {
       username: '',

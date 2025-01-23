@@ -68,14 +68,14 @@ export class SupabaseService {
         return null;
       }
   
-      return data
+      return data[0]
   }
 
   async agregarResidencias(residencias:any[]) {
     let resultados: any[] = []; // Array para almacenar los resultados
 
     for (let i=0; i<residencias.length; i++) {
-      console.log('vuelta destripamiento nivel 2: ' + i);
+      console.log('vuelta destripamiento: ' + i);
       let nro_residencia:Number = residencias[i][0];
       let estado:String = residencias[i][1];
       let departamento:Boolean = residencias[i][2];
@@ -127,7 +127,7 @@ export class SupabaseService {
       return null;
     }
 
-    return data[0] 
+    return data[0]
   }
 
   async getResidenciasByUsuario(u_id_usuario: number) {
