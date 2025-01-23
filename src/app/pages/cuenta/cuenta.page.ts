@@ -21,9 +21,10 @@ export class CuentaPage implements OnInit {
   private storage:StorageService) { }
 
   ngOnInit() {
-    var resultado = this.storage.get('usuario_id')
+    var resultado = this.storage.get('id_usuario')
     if (resultado !== undefined){
       resultado.then(id_usuario => {
+        console.log("id usuario: ")
         console.log(id_usuario);
         this.servicio.getUsuarioByIdUsuario(id_usuario).then(usuarioData => {
           console.log(usuarioData);
