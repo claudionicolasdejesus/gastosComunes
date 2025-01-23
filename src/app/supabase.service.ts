@@ -251,12 +251,15 @@ export class SupabaseService {
     return data
   }
 
-  async getPagoByLastPaymentRevision() {
+  async getPagoByLastPaymentRevision(nro_residencia:number) {
     const { data, error } = await this.supabase
       .from('pago')
       .select('*')
       .order('fecha', { ascending: true }) // Ordena por fecha ascendente
+      .eq('r_nro_residencia',nro_residencia)
+      .eq('revisado', false)
       .limit(1); // Obtiene solo el primer resultado
+      
   
     if (error) {
       console.error('Error fetching data:', error);
@@ -282,10 +285,10 @@ export class SupabaseService {
     return data
   }
 
-  async aprobarPago(aprobado: boolean, revisado: boolean, id_pago: number) {
+  async aprobarPago(aprobado: boolean|undefined, revisado: boolean|undefined, id_pago: number, comentarios?:string) {
     const { data, error } = await this.supabase
       .from('pago')
-      .update({ aprobado, revisado })
+      .update({ aprobado, revisado, comentarios })
       .eq('id_pago', id_pago)
       .select()
 

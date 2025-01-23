@@ -6,31 +6,33 @@
   </ion-text>
 
   <ion-list>
-    <form #formulario="ngForm" (ngSubmit)="onSubmit($event)" id="ngForm">
-      <ion-item>
-        <ion-label class="i-text-capitalize">Estado: Pendiente ⚠️</ion-label>
-      </ion-item>
+    <form #formulario="ngForm" id="ngForm">
 
       <ion-item>
-        <ion-label class="i-text-capitalize">Monto pagado: 13.000</ion-label>
+        <ion-label class="i-text-capitalize">ID pago: {{id_pago}}</ion-label>
       </ion-item>
 
       <ion-item>
-        <ion-label class="i-text-capitalize">Método de pago: Débito</ion-label>
+        <ion-label class="i-text-capitalize">Monto pagado: {{monto_pagado_fetch}}</ion-label>
       </ion-item>
 
-      <ion-item>    
-        <ion-label class="i-text-capitalize">Comentario: </ion-label>
-        <ion-label class="i-text-capitalize">blablabla</ion-label>
+      <ion-item>
+        <ion-label class="i-text-capitalize">Fecha: {{fecha_fetch}}</ion-label>
       </ion-item>
 
-      <ion-button expand="block" color="primary" type="submit" size="small" value="Aceptar" class="button-revision-pago">
+      <ion-item>
+        <ion-label class="i-text-capitalize">Método de pago: {{metodo_pago_fetch}}</ion-label>
+      </ion-item>
+
+      <ion-button expand="block" color="primary" type="submit" size="small" 
+      value="Aceptar" class="button-revision-pago" (click)="onSubmit()">
         <!--[disabled]="formulario.invalid"-->
         <ion-text color="light">
           <p>Aceptar</p>
         </ion-text>
       </ion-button>
-      <ion-button expand="block" color="primary" type="submit" size="small" value="Denegar" class="button-revision-pago">
+      <ion-button expand="block" color="primary" type="submit" size="small" 
+      value="Denegar" class="button-revision-pago" (click)="onSubmit()">
         <!--[disabled]="formulario.invalid"-->
         <ion-text color="light">
           <p>Denegar</p>
