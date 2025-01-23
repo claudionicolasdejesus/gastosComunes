@@ -1,0 +1,32 @@
+<app-encabezado titulo="Cuenta"></app-encabezado>
+
+<ion-content>
+
+  <ion-item>
+    <ion-label class="i-text-capitalize" style="text-align: center;">Usuario: {{nombre_usuario}}</ion-label>
+  </ion-item>
+
+  <!-- Visualización residencias -->
+
+  <ion-item style="text-align: center;">
+    <ion-label class="i-text-capitalize">Residencias usuario</ion-label>
+  </ion-item>
+
+  <ion-item style="text-align: center;" *ngFor="let residencia of residencias">
+    <ion-label class="i-text-capitalize">nro_residencia: {{residencia.nro_residencia}}</ion-label>
+  </ion-item>
+  
+  <!-- ingresar nuevas residencias -->
+
+  <ion-list [inset]="true" style="text-align: center;">
+    <ion-label style="margin-right: 32%;">Agregar residencia</ion-label>
+    <ion-button (click)="agregarResidenciaAlerta()">
+      <ion-icon name="add-circle-outline"></ion-icon>
+    </ion-button>
+    <ion-item *ngFor="let residencia of residencias">	
+      <ion-label>Residencia: {{residencia[0]}}</ion-label>
+      <ion-icon name="close-circle-outline" (click)="eliminarResidenciaLista(residencia[0])"></ion-icon>
+    </ion-item>
+  </ion-list>
+
+</ion-content>

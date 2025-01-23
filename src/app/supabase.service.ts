@@ -131,7 +131,7 @@ export class SupabaseService {
 
   // residencia
 
-  async getUsuarioByResidencia(id_usuario: number) {
+  async getUsuarioByIdUsuario(id_usuario: number) {
     const { data, error } = await this.supabase
       .from('usuario')
       .select()

@@ -21,6 +21,10 @@ export class EncabezadoComponent  implements OnInit {
     this.ruta = this.router.url
   }
 
+  navegacionCuenta() {
+    this.router.navigate(["/cuenta"])
+  }
+
   htmlBackButton: string = `<ion-back-button defaultHref="/home" text="Volver" color="light"></ion-back-button>`
 
 }

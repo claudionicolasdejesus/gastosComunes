@@ -1,4 +1,4 @@
-<app-encabezado titulo="login usuario"></app-encabezado>
+<app-encabezado titulo="registro usuario"></app-encabezado>
 
 <ion-content class="ion-padding">
   <ion-text color="primary" class="ion-text-center">
@@ -21,18 +21,6 @@
         placeholder="******"
         [clearInput]="true"></ion-input>
       </ion-item>
-
-      <ion-content color="light">
-        <ion-list [inset]="true">
-          <ion-button (click)="agregarResidencia()">
-            <ion-icon name="add-circle-outline"></ion-icon>
-          </ion-button>
-          <ion-item *ngFor="let residencia of residencias">	
-            <ion-label>{{residencia}}</ion-label>
-            <ion-icon name="close-circle-outline"></ion-icon>
-          </ion-item>
-        </ion-list>
-      </ion-content>
 
       <ion-list [inset]="true" style="text-align: center;">
         <ion-label style="margin-right: 32%;">Agregar residencia</ion-label>
