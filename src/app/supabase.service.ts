@@ -131,6 +131,20 @@ export class SupabaseService {
 
   // residencia
 
+  async getUsuarioByResidencia(id_usuario: number) {
+    const { data, error } = await this.supabase
+      .from('usuario')
+      .select()
+      .eq('id_usuario', id_usuario)
+
+    if (error) {
+      console.error('Error fetching data:', error);
+      return null;
+    }
+
+    return data[0]
+  }
+
   async getResidenciaByNroResidencia(nro_residencia: number) {
     const { data, error } = await this.supabase
     .from('residencia')
