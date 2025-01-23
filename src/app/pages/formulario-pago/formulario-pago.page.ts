@@ -3,6 +3,7 @@ import { FormularioPago } from '../../interfaces/formulario-pago';
 import { AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { SupabaseService } from 'src/app/supabase.service';
+import { StorageService } from 'src/app/ionic-storage.service';
 
 @Component({
   selector: 'app-formulario-pago',
@@ -14,7 +15,8 @@ export class FormularioPagoPage implements OnInit {
 
   constructor(private alertController: AlertController, 
     private router: Router,
-    private servicio:SupabaseService
+    private servicio:SupabaseService,
+    private servicioAlmacenamiento:StorageService,
   ) { }
 
   message: string='';
@@ -96,7 +98,20 @@ export class FormularioPagoPage implements OnInit {
     console.log(this.FP.fecha);
     this.FP.fecha = new Date(Date.now());
     console.log(this.FP.fecha);
-    this.servicio.crearPago(montoPagado, metodoPago, this.FP.fecha, 1, 1, comentarios)
+
+    this.servicioAlmacenamiento.get('id_usuario')?.then(id_usuario => {
+      console.log("id usuario primera carga promesa:")
+      console.log(id_usuario)
+      this.servicioAlmacenamiento.get('residencia_id')?.then(id_residencia => {
+        console.log("id residencia carga segunda promesa: ")
+        console.log(id_residencia)
+
+        this.servicio.crearPago(montoPagado, metodoPago, id_usuario, id_residencia, 
+          this.FP.fecha, comentarios)
+      })
+    })
+
+    
   }
 
 }

@@ -224,8 +224,8 @@ export class SupabaseService {
     return data?.[0] || null; // Devuelve el primer resultado o null
   }
 
-  async crearPago(montopagar: number, metodo_pago: string, fecha: Date, 
-    u_id_usuario: number, r_nro_residencia: number, comentarios?: string) {
+  async crearPago(montopagar: number, metodo_pago: string, 
+    u_id_usuario: number, r_nro_residencia: number, fecha?: Date, comentarios?: string) {
     const { data, error } = await this.supabase
       .from('pago')
       .insert({ montopagar, metodo_pago, comentarios, fecha, 
