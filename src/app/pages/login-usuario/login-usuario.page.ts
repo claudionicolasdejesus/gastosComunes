@@ -51,7 +51,6 @@ export class LoginUsuarioPage implements OnInit {
         console.log("credenciales incorrectas")
       } 
     });
-
   }
   
 }

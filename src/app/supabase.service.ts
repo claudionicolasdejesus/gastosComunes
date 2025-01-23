@@ -53,6 +53,21 @@ export class SupabaseService {
       return data[0];
   }
 
+  async signInAdmin(username: string, password: string) {
+    const { data, error } = await this.supabase
+        .from('admin')
+        .select('*')
+        .eq('username', username)
+        .eq('password', password)
+  
+      if (error) {
+        console.error('Error insertando datos', error);
+        return null;
+      }
+  
+      return data[0];
+  }
+
   signOut() {
     return this.supabase.auth.signOut()
   }
@@ -128,6 +143,19 @@ export class SupabaseService {
     }
 
     return data[0]
+  }
+
+  async getAllResidencias() {
+    const { data, error } = await this.supabase
+    .from('residencia')
+    .select()
+
+    if (error) {
+      console.error('Error fetching data: ' + error);
+      return null
+    }
+
+    return data;
   }
 
   async getResidenciasByUsuario(u_id_usuario: number) {

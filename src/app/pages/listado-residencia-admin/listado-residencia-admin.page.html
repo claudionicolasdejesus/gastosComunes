@@ -2,34 +2,10 @@
 
 <ion-content>
   
-  <ion-item detail="true" routerLink="/servicio-detalle-admin">
+  <ion-item detail="true" *ngFor="let residencia of residencias"
+  (click)="seleccionarResidencia(residencia.nro_residencia)">
     <ion-icon name="checkmark-outline" color="success"></ion-icon>
-    <ion-label class="i-text-capitalize">Residencia 332</ion-label>
-  </ion-item>
-
-  <ion-item detail="true" routerLink="/servicio-detalle-admin">
-    <ion-icon name="alert-circle-outline" color="danger"></ion-icon>
-    <ion-label class="i-text-capitalize">Residencia 223</ion-label>
-  </ion-item>
-
-  <ion-item detail="true" routerLink="/servicio-detalle-admin">
-    <ion-icon name="alert-circle-outline" color="danger"></ion-icon>
-    <ion-label class="i-text-capitalize">Residencia 334</ion-label>
-  </ion-item>
-
-  <ion-item detail="true" routerLink="/servicio-detalle-admin">
-    <ion-icon name="warning-outline" color="yellow"></ion-icon>
-    <ion-label class="i-text-capitalize">Residencia 424</ion-label>
-  </ion-item>
-
-  <ion-item detail="true" routerLink="/servicio-detalle-admin">
-    <ion-icon name="checkmark-outline" color="success"></ion-icon>
-    <ion-label class="i-text-capitalize">Residencia 522</ion-label>
-  </ion-item>
-
-  <ion-item detail="true" routerLink="/servicio-detalle-admin">
-    <ion-icon name="checkmark-outline" color="success"></ion-icon>
-    <ion-label class="i-text-capitalize">Residencia 631</ion-label>
+    <ion-label class="i-text-capitalize">Residencia {{residencia.nro_residencia}}</ion-label>
   </ion-item>
 
 </ion-content>

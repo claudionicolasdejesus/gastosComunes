@@ -110,8 +110,5 @@ export class FormularioPagoPage implements OnInit {
           this.FP.fecha, comentarios)
       })
     })
-
-    
   }
-
 }
