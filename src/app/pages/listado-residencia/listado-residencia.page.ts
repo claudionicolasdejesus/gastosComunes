@@ -19,24 +19,33 @@ export class ListadoResidenciaPage implements OnInit {
   ) { }
 
   ngOnInit() {
-    var resultado = this.storageService.get('id_usuario')
-        if (resultado !== undefined){
-          resultado.then(data => { console.log("LUGAR BUENO: " + data) 
-            this.service.getResidenciasByUsuario(data).then((data2) => {
-              console.log(data2);
-              if (data2 !== null){
-                for(let i=0; data2.length>i; i++) {
-                  console.log(data2[i])
-                  this.residencias.push(data2[i])
-                }
-              }
-              console.log('residencias lista: ')
-              console.log(this.residencias[0].nro_residencia)
-            });
-          })
-        }
+    this.storageService.remove('residencia_id')
 
-    
+    var resultado = this.storageService.get('id_usuario')
+    if (resultado !== undefined){
+      resultado.then(data => { console.log("LUGAR BUENO 2: " + data) 
+        this.service.getResidenciasByUsuario(data).then((data2) => {
+          console.log(data2);
+          if (data2 !== null){
+            for(let i=0; data2.length>i; i++) {
+              console.log(data2[i])
+              this.residencias.push(data2[i])
+            }
+          }
+        });
+      })
+    }
+  }
+
+  seleccionarResidencia(nro_residencia:number) {
+    console.log("numero residencia seleccionado: " + nro_residencia)
+    this.storageService.set('residencia_id', nro_residencia)
+    this.storageService.get('residencia_id')?.then(data => {
+      console.log("numero residencia escogida leida después del guardado: ")
+      console.log(data)
+
+      this.router.navigate(['/servicio-detalle']);
+    });
   }
 
 }

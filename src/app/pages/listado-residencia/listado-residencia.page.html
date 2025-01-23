@@ -1,8 +1,9 @@
 <app-encabezado titulo="Listado Residencias"></app-encabezado>
 
 <ion-content>
-  
-  <ion-item detail="true" routerLink="/servicio-detalle" 
+  <!-- routerLink="/servicio-detalle" -->
+  <ion-item detail="true" 
+  (click)="seleccionarResidencia(residencia.nro_residencia)"
   *ngFor="let residencia of residencias">
     <ion-icon name="warning-outline" color="yellow"></ion-icon>
     <ion-label class="i-text-capitalize"> Residencia {{residencia.nro_residencia}}</ion-label>

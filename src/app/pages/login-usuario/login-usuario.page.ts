@@ -39,7 +39,7 @@ export class LoginUsuarioPage implements OnInit {
         var resultado = this.storageService.get('id_usuario')
         if (resultado !== undefined){
           this.storageService.clear()
-          resultado.then(data => { console.log("LUGAR BUENO: " + data) })
+          resultado.then(data => { console.log("LUGAR BUENO 1: " + data) })
         }
 
         console.log("Acceso ok");
