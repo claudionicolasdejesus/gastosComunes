@@ -21,7 +21,8 @@
     </ion-button>
     <ion-item *ngFor="let residencia of residencias">	
       <ion-label>Residencia: {{residencia.nro_residencia}}</ion-label>
-      <ion-icon name="close-circle-outline" (click)="eliminarResidenciaLista(residencia[0])"></ion-icon>
+      <ion-icon name="close-circle-outline" 
+      (click)="eliminarResidenciaLista(residencia.nro_residencia)"></ion-icon>
     </ion-item>
   </ion-list>
 

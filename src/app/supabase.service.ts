@@ -166,34 +166,46 @@ export class SupabaseService {
     .eq('nro_residencia', nro_residencia)
 
     let listaIdPagos: number[]=[]
+    let pagosEliminadoss: number[]=[]
     
     if (error) {
       console.error('Error fetching data: ' + error);
       return null
     }
 
-    this.getPagosByResidencia(data[0].nro_residencia).then(pago => {
+    await this.getPagosByResidencia(data[0].nro_residencia).then(pago => {
       if (pago) {
         for (let i=0; pago.length>i; i++) {
           listaIdPagos.push(pago[i].id_pago)
         }
+        console.log("LISTA ID PAGOSSSSSS DENTRO DE LA FUNCION EN SUPABASE");
+        console.log(listaIdPagos);
+
+        this.eliminarPagos(listaIdPagos).then(pagosEliminados => {
+          console.log("pagos eliminadosssssssss aaaaaaaaa");
+          console.log(pagosEliminados);
+          if (pagosEliminados) {
+            for (let i=0; pagosEliminados.length>i; i++) {
+              pagosEliminadoss.push(pagosEliminados[i].id_pago)
+            }
+          }
+        })
       }
     })
 
-    let pagosEliminadoss: any[]=[]
+    const { data:dataEliminada, error:errorEliminacion } = await this.supabase
+    .from('residencia')
+    .delete()
+    .eq('nro_residencia', nro_residencia)
+    .select()
 
-    this.eliminarPagos(listaIdPagos).then(pagosEliminados => {
-      if (pagosEliminados) {
-        for (let i=0; pagosEliminados.length>i; i++) {
-          pagosEliminadoss.push(pagosEliminados[i].id_pago)
-        }
-      }
-    })
+    if (errorEliminacion) {
+      console.error('Error deleting residencia: ' + errorEliminacion);
+      return null;
+    }
 
-    //return data
-    
     // borrar despues
-    return pagosEliminadoss
+    return dataEliminada
   }
 
   async eliminarPagos(id_pago:Array<number>) {
@@ -207,8 +219,9 @@ export class SupabaseService {
     for (let i = 0; id_pago.length > i; i++) {
       const { data, error } = await this.supabase
       .from('pago')
-      .select()
+      .delete()
       .eq('id_pago', id_pago[i])
+      .select()
 
       if (error) {
         console.error('Error fetching data: ' + error);
