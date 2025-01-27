@@ -159,6 +159,73 @@ export class SupabaseService {
     return data[0]
   }
 
+  async eliminarResidencia(nro_residencia:number) {
+    const { data, error } = await this.supabase
+    .from('residencia')
+    .select()
+    .eq('nro_residencia', nro_residencia)
+
+    let listaIdPagos: number[]=[]
+    
+    if (error) {
+      console.error('Error fetching data: ' + error);
+      return null
+    }
+
+    this.getPagosByResidencia(data[0].nro_residencia).then(pago => {
+      if (pago) {
+        for (let i=0; pago.length>i; i++) {
+          listaIdPagos.push(pago[i].id_pago)
+        }
+      }
+    })
+
+    let pagosEliminadoss: any[]=[]
+
+    this.eliminarPagos(listaIdPagos).then(pagosEliminados => {
+      if (pagosEliminados) {
+        for (let i=0; pagosEliminados.length>i; i++) {
+          pagosEliminadoss.push(pagosEliminados[i].id_pago)
+        }
+      }
+    })
+
+    //return data
+    
+    // borrar despues
+    return pagosEliminadoss
+  }
+
+  async eliminarPagos(id_pago:Array<number>) {
+    /* const { data, error } = await this.supabase
+    .from('pago')
+    .select()
+    .in('id_pago', id_pago) */
+
+    let dataArray: any[]=[]
+
+    for (let i = 0; id_pago.length > i; i++) {
+      const { data, error } = await this.supabase
+      .from('pago')
+      .select()
+      .eq('id_pago', id_pago[i])
+
+      if (error) {
+        console.error('Error fetching data: ' + error);
+        return null
+      }
+
+      dataArray.push(data)
+    }
+
+    /* if (error) {
+      console.error('Error fetching data: ' + error);
+      return null
+    } */
+
+    return dataArray
+  }
+
   async getAllResidencias() {
     const { data, error } = await this.supabase
     .from('residencia')
@@ -215,7 +282,7 @@ export class SupabaseService {
 
   }  
 
-  async getPagosByIdUusario(id_usuario: number) {
+  async getPagosByIdUsuario(id_usuario: number) {
     const { data, error } = await this.supabase
     .from('pago')
     .select()
@@ -241,7 +308,7 @@ export class SupabaseService {
       return null;
     }
 
-    return data    
+    return data  
   }
 
   async getPagosRevisadosByResidencia(r_nro_residencia: number) {
